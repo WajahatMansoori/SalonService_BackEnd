@@ -1,0 +1,458 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SalonDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Invoices">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SalonProductsId" Type="int" />
+          <Property Name="InvoiceAmount" Type="int" />
+          <Property Name="InvoiceDate" Type="date" />
+          <Property Name="CreationDate" Type="date" />
+          <Property Name="UpdationDate" Type="date" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="ProductQuantity" Type="int" />
+        </EntityType>
+        <EntityType Name="SalonFacilitator">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FacilitatorName" Type="varchar" MaxLength="100" />
+          <Property Name="Salary" Type="int" />
+          <Property Name="IsBooked" Type="bit" />
+          <Property Name="CreationDate" Type="date" />
+          <Property Name="UpdationDate" Type="date" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="SalonProducts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductName" Type="varchar" MaxLength="100" />
+          <Property Name="AvailableQuantity" Type="int" />
+          <Property Name="CreationDate" Type="date" />
+          <Property Name="UpdationDate" Type="date" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="SalonServices">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ServiceName" Type="varchar" MaxLength="100" />
+          <Property Name="ServicePrice" Type="int" />
+          <Property Name="CreationDate" Type="date" />
+          <Property Name="UpdationDate" Type="date" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="SolonAppointment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClientName" Type="varchar" MaxLength="100" />
+          <Property Name="ClientPhone" Type="varchar" MaxLength="20" />
+          <Property Name="SalonServicesId" Type="int" />
+          <Property Name="SalonFacilitatorId" Type="int" />
+          <Property Name="BillAmount" Type="int" />
+          <Property Name="AppointDate" Type="date" />
+          <Property Name="CreationDate" Type="date" />
+          <Property Name="UpdationDate" Type="date" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsServed" Type="bit" />
+        </EntityType>
+        <Function Name="Admin_Delete_SalonFacilitator" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SalonFacilitator" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Admin_Delete_SalonServices" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ServiceId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Admin_Delete_SolonProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SolonProduct" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Admin_Insert_Invoices" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProductId" Type="int" Mode="In" />
+          <Parameter Name="InvoiceAmount" Type="int" Mode="In" />
+          <Parameter Name="InvoiceDate" Type="date" Mode="In" />
+          <Parameter Name="Quantity" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Admin_Insert_SalonFacilitator" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FacilitatorName" Type="varchar" Mode="In" />
+          <Parameter Name="Salary" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Admin_Insert_SalonServices" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ServiceName" Type="varchar" Mode="In" />
+          <Parameter Name="ServicePrice" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Admin_Insert_SlonProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProductName" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Admin_Insert_SolonAppointment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ClientName" Type="varchar" Mode="In" />
+          <Parameter Name="ClientPhone" Type="varchar" Mode="In" />
+          <Parameter Name="ServiceId" Type="varchar(max)" Mode="In" />
+          <Parameter Name="FacilitatorId" Type="int" Mode="In" />
+          <Parameter Name="AppointmentDate" Type="date" Mode="In" />
+        </Function>
+        <Function Name="Admin_Select_Invoices" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Admin_Select_SalonFacilitator" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Admin_Select_SalonServices" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Admin_Select_SolonAppointment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Admin_Select_SolonProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Admin_Update_ClientServiceServed" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FacilitatorId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Admin_Update_SalonFacilitator" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FacId" Type="int" Mode="In" />
+          <Parameter Name="FacilitatorName" Type="varchar" Mode="In" />
+          <Parameter Name="Salary" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Admin_Update_SalonServices" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ServiceId" Type="int" Mode="In" />
+          <Parameter Name="ServiceName" Type="varchar" Mode="In" />
+          <Parameter Name="ServicePrice" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Admin_Update_SlonProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProdId" Type="int" Mode="In" />
+          <Parameter Name="ProductName" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="SalonDBModelStoreContainer">
+          <EntitySet Name="Invoices" EntityType="Self.Invoices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SalonFacilitator" EntityType="Self.SalonFacilitator" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SalonProducts" EntityType="Self.SalonProducts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SalonServices" EntityType="Self.SalonServices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SolonAppointment" EntityType="Self.SolonAppointment" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SalonDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Invoice">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SalonProductsId" Type="Int32" />
+          <Property Name="InvoiceAmount" Type="Int32" />
+          <Property Name="InvoiceDate" Type="DateTime" Precision="0" />
+          <Property Name="CreationDate" Type="DateTime" Precision="0" />
+          <Property Name="UpdationDate" Type="DateTime" Precision="0" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="ProductQuantity" Type="Int32" />
+        </EntityType>
+        <EntityType Name="SalonFacilitator">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FacilitatorName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Salary" Type="Int32" />
+          <Property Name="IsBooked" Type="Boolean" />
+          <Property Name="CreationDate" Type="DateTime" Precision="0" />
+          <Property Name="UpdationDate" Type="DateTime" Precision="0" />
+          <Property Name="IsActive" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="SalonProduct">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="AvailableQuantity" Type="Int32" />
+          <Property Name="CreationDate" Type="DateTime" Precision="0" />
+          <Property Name="UpdationDate" Type="DateTime" Precision="0" />
+          <Property Name="IsActive" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="SalonService">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ServiceName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ServicePrice" Type="Int32" />
+          <Property Name="CreationDate" Type="DateTime" Precision="0" />
+          <Property Name="UpdationDate" Type="DateTime" Precision="0" />
+          <Property Name="IsActive" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="SolonAppointment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ClientPhone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="SalonServicesId" Type="Int32" />
+          <Property Name="SalonFacilitatorId" Type="Int32" />
+          <Property Name="BillAmount" Type="Int32" />
+          <Property Name="AppointDate" Type="DateTime" Precision="0" />
+          <Property Name="CreationDate" Type="DateTime" Precision="0" />
+          <Property Name="UpdationDate" Type="DateTime" Precision="0" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsServed" Type="Boolean" />
+        </EntityType>
+        <EntityContainer Name="SalonDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Invoices" EntityType="Self.Invoice" />
+          <EntitySet Name="SalonFacilitators" EntityType="Self.SalonFacilitator" />
+          <EntitySet Name="SalonProducts" EntityType="Self.SalonProduct" />
+          <EntitySet Name="SalonServices" EntityType="Self.SalonService" />
+          <EntitySet Name="SolonAppointments" EntityType="Self.SolonAppointment" />
+          <FunctionImport Name="Admin_Delete_SalonFacilitator">
+            <Parameter Name="SalonFacilitator" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Admin_Delete_SalonServices">
+            <Parameter Name="ServiceId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Admin_Delete_SolonProduct">
+            <Parameter Name="SolonProduct" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Admin_Insert_Invoices">
+            <Parameter Name="ProductId" Mode="In" Type="Int32" />
+            <Parameter Name="InvoiceAmount" Mode="In" Type="Int32" />
+            <Parameter Name="InvoiceDate" Mode="In" Type="DateTime" />
+            <Parameter Name="Quantity" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Admin_Insert_SalonFacilitator">
+            <Parameter Name="FacilitatorName" Mode="In" Type="String" />
+            <Parameter Name="Salary" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Admin_Insert_SalonServices">
+            <Parameter Name="ServiceName" Mode="In" Type="String" />
+            <Parameter Name="ServicePrice" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Admin_Insert_SlonProduct">
+            <Parameter Name="ProductName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Admin_Insert_SolonAppointment" ReturnType="Collection(String)">
+            <Parameter Name="ClientName" Mode="In" Type="String" />
+            <Parameter Name="ClientPhone" Mode="In" Type="String" />
+            <Parameter Name="ServiceId" Mode="In" Type="String" />
+            <Parameter Name="FacilitatorId" Mode="In" Type="Int32" />
+            <Parameter Name="AppointmentDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="Admin_Select_Invoices" ReturnType="Collection(SalonDBModel.Admin_Select_Invoices_Result)" />
+          <FunctionImport Name="Admin_Select_SalonFacilitator" ReturnType="Collection(SalonDBModel.Admin_Select_SalonFacilitator_Result)" />
+          <FunctionImport Name="Admin_Select_SalonServices" ReturnType="Collection(SalonDBModel.Admin_Select_SalonServices_Result)" />
+          <FunctionImport Name="Admin_Select_SolonAppointment" ReturnType="Collection(SalonDBModel.Admin_Select_SolonAppointment_Result)" />
+          <FunctionImport Name="Admin_Select_SolonProduct" ReturnType="Collection(SalonDBModel.Admin_Select_SolonProduct_Result)" />
+          <FunctionImport Name="Admin_Update_ClientServiceServed">
+            <Parameter Name="FacilitatorId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Admin_Update_SalonFacilitator">
+            <Parameter Name="FacId" Mode="In" Type="Int32" />
+            <Parameter Name="FacilitatorName" Mode="In" Type="String" />
+            <Parameter Name="Salary" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Admin_Update_SalonServices">
+            <Parameter Name="ServiceId" Mode="In" Type="Int32" />
+            <Parameter Name="ServiceName" Mode="In" Type="String" />
+            <Parameter Name="ServicePrice" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Admin_Update_SlonProduct">
+            <Parameter Name="ProdId" Mode="In" Type="Int32" />
+            <Parameter Name="ProductName" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="Admin_Select_Invoices_Result">
+          <Property Type="Int32" Name="InvoiceId" Nullable="false" />
+          <Property Type="Int32" Name="ProductId" Nullable="false" />
+          <Property Type="String" Name="ProductName" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="InvoiceAmount" Nullable="true" />
+          <Property Type="DateTime" Name="InvoiceDate" Nullable="true" />
+          <Property Type="Int32" Name="AvailableQuantity" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Admin_Select_SalonFacilitator_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="FacilitatorName" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="Salary" Nullable="true" />
+          <Property Type="Boolean" Name="IsBooked" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Admin_Select_SalonServices_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="ServiceName" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="ServicePrice" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Admin_Select_SolonAppointment_Result">
+          <Property Type="String" Name="ClientName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ClientPhone" Nullable="true" MaxLength="20" />
+          <Property Type="DateTime" Name="AppointDate" Nullable="true" />
+          <Property Type="String" Name="IsServed" Nullable="false" MaxLength="3" />
+          <Property Type="String" Name="FacilitatorName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ServiceName" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="ServiceCharges" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Admin_Select_SolonProduct_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="ProductName" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="AvailableQuantity" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SalonDBModelStoreContainer" CdmEntityContainer="SalonDBEntities">
+          <EntitySetMapping Name="Invoices">
+            <EntityTypeMapping TypeName="SalonDBModel.Invoice">
+              <MappingFragment StoreEntitySet="Invoices">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SalonProductsId" ColumnName="SalonProductsId" />
+                <ScalarProperty Name="InvoiceAmount" ColumnName="InvoiceAmount" />
+                <ScalarProperty Name="InvoiceDate" ColumnName="InvoiceDate" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="UpdationDate" ColumnName="UpdationDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ProductQuantity" ColumnName="ProductQuantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SalonFacilitators">
+            <EntityTypeMapping TypeName="SalonDBModel.SalonFacilitator">
+              <MappingFragment StoreEntitySet="SalonFacilitator">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FacilitatorName" ColumnName="FacilitatorName" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="IsBooked" ColumnName="IsBooked" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="UpdationDate" ColumnName="UpdationDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SalonProducts">
+            <EntityTypeMapping TypeName="SalonDBModel.SalonProduct">
+              <MappingFragment StoreEntitySet="SalonProducts">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="AvailableQuantity" ColumnName="AvailableQuantity" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="UpdationDate" ColumnName="UpdationDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SalonServices">
+            <EntityTypeMapping TypeName="SalonDBModel.SalonService">
+              <MappingFragment StoreEntitySet="SalonServices">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
+                <ScalarProperty Name="ServicePrice" ColumnName="ServicePrice" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="UpdationDate" ColumnName="UpdationDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SolonAppointments">
+            <EntityTypeMapping TypeName="SalonDBModel.SolonAppointment">
+              <MappingFragment StoreEntitySet="SolonAppointment">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+                <ScalarProperty Name="ClientPhone" ColumnName="ClientPhone" />
+                <ScalarProperty Name="SalonServicesId" ColumnName="SalonServicesId" />
+                <ScalarProperty Name="SalonFacilitatorId" ColumnName="SalonFacilitatorId" />
+                <ScalarProperty Name="BillAmount" ColumnName="BillAmount" />
+                <ScalarProperty Name="AppointDate" ColumnName="AppointDate" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="UpdationDate" ColumnName="UpdationDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsServed" ColumnName="IsServed" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Admin_Delete_SalonFacilitator" FunctionName="SalonDBModel.Store.Admin_Delete_SalonFacilitator" />
+          <FunctionImportMapping FunctionImportName="Admin_Delete_SalonServices" FunctionName="SalonDBModel.Store.Admin_Delete_SalonServices" />
+          <FunctionImportMapping FunctionImportName="Admin_Delete_SolonProduct" FunctionName="SalonDBModel.Store.Admin_Delete_SolonProduct" />
+          <FunctionImportMapping FunctionImportName="Admin_Insert_Invoices" FunctionName="SalonDBModel.Store.Admin_Insert_Invoices" />
+          <FunctionImportMapping FunctionImportName="Admin_Insert_SalonFacilitator" FunctionName="SalonDBModel.Store.Admin_Insert_SalonFacilitator" />
+          <FunctionImportMapping FunctionImportName="Admin_Insert_SalonServices" FunctionName="SalonDBModel.Store.Admin_Insert_SalonServices" />
+          <FunctionImportMapping FunctionImportName="Admin_Insert_SlonProduct" FunctionName="SalonDBModel.Store.Admin_Insert_SlonProduct" />
+          <FunctionImportMapping FunctionImportName="Admin_Insert_SolonAppointment" FunctionName="SalonDBModel.Store.Admin_Insert_SolonAppointment" />
+          <FunctionImportMapping FunctionImportName="Admin_Select_Invoices" FunctionName="SalonDBModel.Store.Admin_Select_Invoices">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SalonDBModel.Admin_Select_Invoices_Result">
+                <ScalarProperty Name="InvoiceId" ColumnName="InvoiceId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="InvoiceAmount" ColumnName="InvoiceAmount" />
+                <ScalarProperty Name="InvoiceDate" ColumnName="InvoiceDate" />
+                <ScalarProperty Name="AvailableQuantity" ColumnName="AvailableQuantity" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Admin_Select_SalonFacilitator" FunctionName="SalonDBModel.Store.Admin_Select_SalonFacilitator">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SalonDBModel.Admin_Select_SalonFacilitator_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FacilitatorName" ColumnName="FacilitatorName" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="IsBooked" ColumnName="IsBooked" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Admin_Select_SalonServices" FunctionName="SalonDBModel.Store.Admin_Select_SalonServices">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SalonDBModel.Admin_Select_SalonServices_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
+                <ScalarProperty Name="ServicePrice" ColumnName="ServicePrice" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Admin_Select_SolonAppointment" FunctionName="SalonDBModel.Store.Admin_Select_SolonAppointment">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SalonDBModel.Admin_Select_SolonAppointment_Result">
+                <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+                <ScalarProperty Name="ClientPhone" ColumnName="ClientPhone" />
+                <ScalarProperty Name="AppointDate" ColumnName="AppointDate" />
+                <ScalarProperty Name="IsServed" ColumnName="IsServed" />
+                <ScalarProperty Name="FacilitatorName" ColumnName="FacilitatorName" />
+                <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
+                <ScalarProperty Name="ServiceCharges" ColumnName="ServiceCharges" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Admin_Select_SolonProduct" FunctionName="SalonDBModel.Store.Admin_Select_SolonProduct">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SalonDBModel.Admin_Select_SolonProduct_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="AvailableQuantity" ColumnName="AvailableQuantity" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Admin_Update_ClientServiceServed" FunctionName="SalonDBModel.Store.Admin_Update_ClientServiceServed" />
+          <FunctionImportMapping FunctionImportName="Admin_Update_SalonFacilitator" FunctionName="SalonDBModel.Store.Admin_Update_SalonFacilitator" />
+          <FunctionImportMapping FunctionImportName="Admin_Update_SalonServices" FunctionName="SalonDBModel.Store.Admin_Update_SalonServices" />
+          <FunctionImportMapping FunctionImportName="Admin_Update_SlonProduct" FunctionName="SalonDBModel.Store.Admin_Update_SlonProduct" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

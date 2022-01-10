@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SalonDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Invoice">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SalonProductsId" Type="Int32" />
+    <Property Name="InvoiceAmount" Type="Int32" />
+    <Property Name="InvoiceDate" Type="DateTime" Precision="0" />
+    <Property Name="CreationDate" Type="DateTime" Precision="0" />
+    <Property Name="UpdationDate" Type="DateTime" Precision="0" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="ProductQuantity" Type="Int32" />
+  </EntityType>
+  <EntityType Name="SalonFacilitator">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FacilitatorName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Salary" Type="Int32" />
+    <Property Name="IsBooked" Type="Boolean" />
+    <Property Name="CreationDate" Type="DateTime" Precision="0" />
+    <Property Name="UpdationDate" Type="DateTime" Precision="0" />
+    <Property Name="IsActive" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="SalonProduct">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="AvailableQuantity" Type="Int32" />
+    <Property Name="CreationDate" Type="DateTime" Precision="0" />
+    <Property Name="UpdationDate" Type="DateTime" Precision="0" />
+    <Property Name="IsActive" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="SalonService">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ServiceName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ServicePrice" Type="Int32" />
+    <Property Name="CreationDate" Type="DateTime" Precision="0" />
+    <Property Name="UpdationDate" Type="DateTime" Precision="0" />
+    <Property Name="IsActive" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="SolonAppointment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ClientName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ClientPhone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="SalonServicesId" Type="Int32" />
+    <Property Name="SalonFacilitatorId" Type="Int32" />
+    <Property Name="BillAmount" Type="Int32" />
+    <Property Name="AppointDate" Type="DateTime" Precision="0" />
+    <Property Name="CreationDate" Type="DateTime" Precision="0" />
+    <Property Name="UpdationDate" Type="DateTime" Precision="0" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="IsServed" Type="Boolean" />
+  </EntityType>
+  <EntityContainer Name="SalonDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Invoices" EntityType="Self.Invoice" />
+    <EntitySet Name="SalonFacilitators" EntityType="Self.SalonFacilitator" />
+    <EntitySet Name="SalonProducts" EntityType="Self.SalonProduct" />
+    <EntitySet Name="SalonServices" EntityType="Self.SalonService" />
+    <EntitySet Name="SolonAppointments" EntityType="Self.SolonAppointment" />
+    <FunctionImport Name="Admin_Delete_SalonFacilitator">
+      <Parameter Name="SalonFacilitator" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Admin_Delete_SalonServices">
+      <Parameter Name="ServiceId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Admin_Delete_SolonProduct">
+      <Parameter Name="SolonProduct" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Admin_Insert_Invoices">
+      <Parameter Name="ProductId" Mode="In" Type="Int32" />
+      <Parameter Name="InvoiceAmount" Mode="In" Type="Int32" />
+      <Parameter Name="InvoiceDate" Mode="In" Type="DateTime" />
+      <Parameter Name="Quantity" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Admin_Insert_SalonFacilitator">
+      <Parameter Name="FacilitatorName" Mode="In" Type="String" />
+      <Parameter Name="Salary" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Admin_Insert_SalonServices">
+      <Parameter Name="ServiceName" Mode="In" Type="String" />
+      <Parameter Name="ServicePrice" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Admin_Insert_SlonProduct">
+      <Parameter Name="ProductName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Admin_Insert_SolonAppointment" ReturnType="Collection(String)">
+      <Parameter Name="ClientName" Mode="In" Type="String" />
+      <Parameter Name="ClientPhone" Mode="In" Type="String" />
+      <Parameter Name="ServiceId" Mode="In" Type="String" />
+      <Parameter Name="FacilitatorId" Mode="In" Type="Int32" />
+      <Parameter Name="AppointmentDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="Admin_Select_Invoices" ReturnType="Collection(SalonDBModel.Admin_Select_Invoices_Result)" />
+    <FunctionImport Name="Admin_Select_SalonFacilitator" ReturnType="Collection(SalonDBModel.Admin_Select_SalonFacilitator_Result)" />
+    <FunctionImport Name="Admin_Select_SalonServices" ReturnType="Collection(SalonDBModel.Admin_Select_SalonServices_Result)" />
+    <FunctionImport Name="Admin_Select_SolonAppointment" ReturnType="Collection(SalonDBModel.Admin_Select_SolonAppointment_Result)" />
+    <FunctionImport Name="Admin_Select_SolonProduct" ReturnType="Collection(SalonDBModel.Admin_Select_SolonProduct_Result)" />
+    <FunctionImport Name="Admin_Update_ClientServiceServed">
+      <Parameter Name="FacilitatorId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Admin_Update_SalonFacilitator">
+      <Parameter Name="FacId" Mode="In" Type="Int32" />
+      <Parameter Name="FacilitatorName" Mode="In" Type="String" />
+      <Parameter Name="Salary" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Admin_Update_SalonServices">
+      <Parameter Name="ServiceId" Mode="In" Type="Int32" />
+      <Parameter Name="ServiceName" Mode="In" Type="String" />
+      <Parameter Name="ServicePrice" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Admin_Update_SlonProduct">
+      <Parameter Name="ProdId" Mode="In" Type="Int32" />
+      <Parameter Name="ProductName" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="Admin_Select_Invoices_Result">
+    <Property Type="Int32" Name="InvoiceId" Nullable="false" />
+    <Property Type="Int32" Name="ProductId" Nullable="false" />
+    <Property Type="String" Name="ProductName" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="InvoiceAmount" Nullable="true" />
+    <Property Type="DateTime" Name="InvoiceDate" Nullable="true" />
+    <Property Type="Int32" Name="AvailableQuantity" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Admin_Select_SalonFacilitator_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="FacilitatorName" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="Salary" Nullable="true" />
+    <Property Type="Boolean" Name="IsBooked" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Admin_Select_SalonServices_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="ServiceName" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="ServicePrice" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Admin_Select_SolonAppointment_Result">
+    <Property Type="String" Name="ClientName" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="ClientPhone" Nullable="true" MaxLength="20" />
+    <Property Type="DateTime" Name="AppointDate" Nullable="true" />
+    <Property Type="String" Name="IsServed" Nullable="false" MaxLength="3" />
+    <Property Type="String" Name="FacilitatorName" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="ServiceName" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="ServiceCharges" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Admin_Select_SolonProduct_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="ProductName" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="AvailableQuantity" Nullable="true" />
+  </ComplexType>
+</Schema>

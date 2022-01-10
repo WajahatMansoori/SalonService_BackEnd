@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SalonDBModelStoreContainer" CdmEntityContainer="SalonDBEntities">
+    <EntitySetMapping Name="Invoices">
+      <EntityTypeMapping TypeName="SalonDBModel.Invoice">
+        <MappingFragment StoreEntitySet="Invoices">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="SalonProductsId" ColumnName="SalonProductsId" />
+          <ScalarProperty Name="InvoiceAmount" ColumnName="InvoiceAmount" />
+          <ScalarProperty Name="InvoiceDate" ColumnName="InvoiceDate" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+          <ScalarProperty Name="UpdationDate" ColumnName="UpdationDate" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="ProductQuantity" ColumnName="ProductQuantity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SalonFacilitators">
+      <EntityTypeMapping TypeName="SalonDBModel.SalonFacilitator">
+        <MappingFragment StoreEntitySet="SalonFacilitator">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FacilitatorName" ColumnName="FacilitatorName" />
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+          <ScalarProperty Name="IsBooked" ColumnName="IsBooked" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+          <ScalarProperty Name="UpdationDate" ColumnName="UpdationDate" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SalonProducts">
+      <EntityTypeMapping TypeName="SalonDBModel.SalonProduct">
+        <MappingFragment StoreEntitySet="SalonProducts">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="AvailableQuantity" ColumnName="AvailableQuantity" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+          <ScalarProperty Name="UpdationDate" ColumnName="UpdationDate" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SalonServices">
+      <EntityTypeMapping TypeName="SalonDBModel.SalonService">
+        <MappingFragment StoreEntitySet="SalonServices">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
+          <ScalarProperty Name="ServicePrice" ColumnName="ServicePrice" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+          <ScalarProperty Name="UpdationDate" ColumnName="UpdationDate" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SolonAppointments">
+      <EntityTypeMapping TypeName="SalonDBModel.SolonAppointment">
+        <MappingFragment StoreEntitySet="SolonAppointment">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+          <ScalarProperty Name="ClientPhone" ColumnName="ClientPhone" />
+          <ScalarProperty Name="SalonServicesId" ColumnName="SalonServicesId" />
+          <ScalarProperty Name="SalonFacilitatorId" ColumnName="SalonFacilitatorId" />
+          <ScalarProperty Name="BillAmount" ColumnName="BillAmount" />
+          <ScalarProperty Name="AppointDate" ColumnName="AppointDate" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+          <ScalarProperty Name="UpdationDate" ColumnName="UpdationDate" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="IsServed" ColumnName="IsServed" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="Admin_Delete_SalonFacilitator" FunctionName="SalonDBModel.Store.Admin_Delete_SalonFacilitator" />
+    <FunctionImportMapping FunctionImportName="Admin_Delete_SalonServices" FunctionName="SalonDBModel.Store.Admin_Delete_SalonServices" />
+    <FunctionImportMapping FunctionImportName="Admin_Delete_SolonProduct" FunctionName="SalonDBModel.Store.Admin_Delete_SolonProduct" />
+    <FunctionImportMapping FunctionImportName="Admin_Insert_Invoices" FunctionName="SalonDBModel.Store.Admin_Insert_Invoices" />
+    <FunctionImportMapping FunctionImportName="Admin_Insert_SalonFacilitator" FunctionName="SalonDBModel.Store.Admin_Insert_SalonFacilitator" />
+    <FunctionImportMapping FunctionImportName="Admin_Insert_SalonServices" FunctionName="SalonDBModel.Store.Admin_Insert_SalonServices" />
+    <FunctionImportMapping FunctionImportName="Admin_Insert_SlonProduct" FunctionName="SalonDBModel.Store.Admin_Insert_SlonProduct" />
+    <FunctionImportMapping FunctionImportName="Admin_Insert_SolonAppointment" FunctionName="SalonDBModel.Store.Admin_Insert_SolonAppointment" />
+    <FunctionImportMapping FunctionImportName="Admin_Select_Invoices" FunctionName="SalonDBModel.Store.Admin_Select_Invoices">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SalonDBModel.Admin_Select_Invoices_Result">
+          <ScalarProperty Name="InvoiceId" ColumnName="InvoiceId" />
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="InvoiceAmount" ColumnName="InvoiceAmount" />
+          <ScalarProperty Name="InvoiceDate" ColumnName="InvoiceDate" />
+          <ScalarProperty Name="AvailableQuantity" ColumnName="AvailableQuantity" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Admin_Select_SalonFacilitator" FunctionName="SalonDBModel.Store.Admin_Select_SalonFacilitator">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SalonDBModel.Admin_Select_SalonFacilitator_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FacilitatorName" ColumnName="FacilitatorName" />
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+          <ScalarProperty Name="IsBooked" ColumnName="IsBooked" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Admin_Select_SalonServices" FunctionName="SalonDBModel.Store.Admin_Select_SalonServices">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SalonDBModel.Admin_Select_SalonServices_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
+          <ScalarProperty Name="ServicePrice" ColumnName="ServicePrice" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Admin_Select_SolonAppointment" FunctionName="SalonDBModel.Store.Admin_Select_SolonAppointment">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SalonDBModel.Admin_Select_SolonAppointment_Result">
+          <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+          <ScalarProperty Name="ClientPhone" ColumnName="ClientPhone" />
+          <ScalarProperty Name="AppointDate" ColumnName="AppointDate" />
+          <ScalarProperty Name="IsServed" ColumnName="IsServed" />
+          <ScalarProperty Name="FacilitatorName" ColumnName="FacilitatorName" />
+          <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
+          <ScalarProperty Name="ServiceCharges" ColumnName="ServiceCharges" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Admin_Select_SolonProduct" FunctionName="SalonDBModel.Store.Admin_Select_SolonProduct">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SalonDBModel.Admin_Select_SolonProduct_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="AvailableQuantity" ColumnName="AvailableQuantity" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Admin_Update_ClientServiceServed" FunctionName="SalonDBModel.Store.Admin_Update_ClientServiceServed" />
+    <FunctionImportMapping FunctionImportName="Admin_Update_SalonFacilitator" FunctionName="SalonDBModel.Store.Admin_Update_SalonFacilitator" />
+    <FunctionImportMapping FunctionImportName="Admin_Update_SalonServices" FunctionName="SalonDBModel.Store.Admin_Update_SalonServices" />
+    <FunctionImportMapping FunctionImportName="Admin_Update_SlonProduct" FunctionName="SalonDBModel.Store.Admin_Update_SlonProduct" />
+  </EntityContainerMapping>
+</Mapping>

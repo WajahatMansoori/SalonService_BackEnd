@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SalonDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Invoices">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SalonProductsId" Type="int" />
+    <Property Name="InvoiceAmount" Type="int" />
+    <Property Name="InvoiceDate" Type="date" />
+    <Property Name="CreationDate" Type="date" />
+    <Property Name="UpdationDate" Type="date" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="ProductQuantity" Type="int" />
+  </EntityType>
+  <EntityType Name="SalonFacilitator">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FacilitatorName" Type="varchar" MaxLength="100" />
+    <Property Name="Salary" Type="int" />
+    <Property Name="IsBooked" Type="bit" />
+    <Property Name="CreationDate" Type="date" />
+    <Property Name="UpdationDate" Type="date" />
+    <Property Name="IsActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="SalonProducts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductName" Type="varchar" MaxLength="100" />
+    <Property Name="AvailableQuantity" Type="int" />
+    <Property Name="CreationDate" Type="date" />
+    <Property Name="UpdationDate" Type="date" />
+    <Property Name="IsActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="SalonServices">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ServiceName" Type="varchar" MaxLength="100" />
+    <Property Name="ServicePrice" Type="int" />
+    <Property Name="CreationDate" Type="date" />
+    <Property Name="UpdationDate" Type="date" />
+    <Property Name="IsActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="SolonAppointment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClientName" Type="varchar" MaxLength="100" />
+    <Property Name="ClientPhone" Type="varchar" MaxLength="20" />
+    <Property Name="SalonServicesId" Type="int" />
+    <Property Name="SalonFacilitatorId" Type="int" />
+    <Property Name="BillAmount" Type="int" />
+    <Property Name="AppointDate" Type="date" />
+    <Property Name="CreationDate" Type="date" />
+    <Property Name="UpdationDate" Type="date" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="IsServed" Type="bit" />
+  </EntityType>
+  <Function Name="Admin_Delete_SalonFacilitator" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SalonFacilitator" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Admin_Delete_SalonServices" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ServiceId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Admin_Delete_SolonProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SolonProduct" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Admin_Insert_Invoices" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ProductId" Type="int" Mode="In" />
+    <Parameter Name="InvoiceAmount" Type="int" Mode="In" />
+    <Parameter Name="InvoiceDate" Type="date" Mode="In" />
+    <Parameter Name="Quantity" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Admin_Insert_SalonFacilitator" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="FacilitatorName" Type="varchar" Mode="In" />
+    <Parameter Name="Salary" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Admin_Insert_SalonServices" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ServiceName" Type="varchar" Mode="In" />
+    <Parameter Name="ServicePrice" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Admin_Insert_SlonProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ProductName" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Admin_Insert_SolonAppointment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ClientName" Type="varchar" Mode="In" />
+    <Parameter Name="ClientPhone" Type="varchar" Mode="In" />
+    <Parameter Name="ServiceId" Type="varchar(max)" Mode="In" />
+    <Parameter Name="FacilitatorId" Type="int" Mode="In" />
+    <Parameter Name="AppointmentDate" Type="date" Mode="In" />
+  </Function>
+  <Function Name="Admin_Select_Invoices" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Admin_Select_SalonFacilitator" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Admin_Select_SalonServices" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Admin_Select_SolonAppointment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Admin_Select_SolonProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Admin_Update_ClientServiceServed" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="FacilitatorId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Admin_Update_SalonFacilitator" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="FacId" Type="int" Mode="In" />
+    <Parameter Name="FacilitatorName" Type="varchar" Mode="In" />
+    <Parameter Name="Salary" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Admin_Update_SalonServices" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ServiceId" Type="int" Mode="In" />
+    <Parameter Name="ServiceName" Type="varchar" Mode="In" />
+    <Parameter Name="ServicePrice" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Admin_Update_SlonProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ProdId" Type="int" Mode="In" />
+    <Parameter Name="ProductName" Type="varchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="SalonDBModelStoreContainer">
+    <EntitySet Name="Invoices" EntityType="Self.Invoices" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SalonFacilitator" EntityType="Self.SalonFacilitator" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SalonProducts" EntityType="Self.SalonProducts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SalonServices" EntityType="Self.SalonServices" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SolonAppointment" EntityType="Self.SolonAppointment" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>
