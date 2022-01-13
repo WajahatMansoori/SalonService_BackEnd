@@ -21,7 +21,7 @@ namespace SalonService_API.Controllers
 
         [HttpPost]
         [Route("api/AddSalonProduct")]
-        public void AddSalonProduct(SalonProduct product)
+        public bool AddSalonProduct(SalonProduct product)
         {
             try
             {
@@ -29,6 +29,7 @@ namespace SalonService_API.Controllers
                 {
                     db.Admin_Insert_SlonProduct(product.ProductName);
                 }
+                return true;
             }
             catch(Exception ex)
             {
@@ -38,7 +39,7 @@ namespace SalonService_API.Controllers
 
         [HttpPost]
         [Route("api/UpdateSalonProduct")]
-        public void UpdateSalonProduct(SalonProduct product)
+        public bool UpdateSalonProduct(SalonProduct product)
         {
             try
             {
@@ -46,6 +47,7 @@ namespace SalonService_API.Controllers
                 {
                     db.Admin_Update_SlonProduct(product.Id, product.ProductName);
                 }
+                return true;
             }
             catch(Exception ex)
             {
@@ -55,7 +57,7 @@ namespace SalonService_API.Controllers
 
         [HttpPost]
         [Route("api/DeleteSalonProduct")]
-        public void DeleteSalonProduct(SalonProduct product)
+        public bool DeleteSalonProduct(SalonProduct product)
         {
             try
             {
@@ -63,6 +65,7 @@ namespace SalonService_API.Controllers
                 {
                     db.Admin_Delete_SolonProduct(product.Id);
                 }
+                return true;                   
             }
             catch(Exception ex)
             {

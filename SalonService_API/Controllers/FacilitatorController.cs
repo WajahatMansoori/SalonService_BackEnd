@@ -26,7 +26,7 @@ namespace SalonService_API.Controllers
 
         [Route("api/AddFacilitator")]
         // POST: api/Facilitator
-        public void Post(SalonFacilitator fac)
+        public bool Post(SalonFacilitator fac)
         {
             try
             {
@@ -34,6 +34,7 @@ namespace SalonService_API.Controllers
                 {
                     db.Admin_Insert_SalonFacilitator(fac.FacilitatorName, fac.Salary);
                 }
+                return true;
             }
             catch(Exception ex)
             {
@@ -43,7 +44,7 @@ namespace SalonService_API.Controllers
         
         [HttpPost]
         [Route("api/UpdateFacilitator")]
-        public void UpdateFacilitator(SalonFacilitator fac)
+        public bool UpdateFacilitator(SalonFacilitator fac)
         {
             try
             {
@@ -51,6 +52,7 @@ namespace SalonService_API.Controllers
                 {
                     db.Admin_Update_SalonFacilitator(fac.Id, fac.FacilitatorName, fac.Salary);
                 }
+                return true;
             }
             catch(Exception ex)
             {
@@ -60,7 +62,7 @@ namespace SalonService_API.Controllers
 
         [HttpPost]
         [Route("api/DeleteFacilitator")]
-        public void DeleteFacilitator(SalonFacilitator fac)
+        public bool DeleteFacilitator(SalonFacilitator fac)
         {
             try
             {
@@ -68,6 +70,7 @@ namespace SalonService_API.Controllers
                 {
                     db.Admin_Delete_SalonFacilitator(fac.Id);
                 }
+                return true;
             }
             catch(Exception ex)
             {
@@ -75,14 +78,6 @@ namespace SalonService_API.Controllers
             }
         }
 
-        // PUT: api/Facilitator/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE: api/Facilitator/5
-        public void Delete(int id)
-        {
-        }
+        
     }
 }

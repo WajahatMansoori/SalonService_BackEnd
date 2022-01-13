@@ -21,7 +21,7 @@ namespace SalonService_API.Controllers
 
         [HttpPost]
         [Route("api/AddSalonService")]
-        public void Addservice(SalonService ser)
+        public bool Addservice(SalonService ser)
         {
             try
             {
@@ -29,6 +29,7 @@ namespace SalonService_API.Controllers
                 {
                     db.Admin_Insert_SalonServices(ser.ServiceName, ser.ServicePrice);
                 }
+                return true;
             }
             catch(Exception ex)
             {
@@ -38,7 +39,7 @@ namespace SalonService_API.Controllers
 
         [HttpPost]
         [Route("api/UpdateSalonService")]
-        public void UpdateService(SalonService ser)
+        public bool UpdateService(SalonService ser)
         {
             try
             {
@@ -46,6 +47,7 @@ namespace SalonService_API.Controllers
                 {
                     db.Admin_Update_SalonServices(ser.Id, ser.ServiceName, ser.ServicePrice);
                 }
+                return true;
             }
             catch(Exception ex)
             {
@@ -55,14 +57,15 @@ namespace SalonService_API.Controllers
 
         [HttpPost]
         [Route("api/DeleteSalonService")]
-        public void DeleteService(SalonService ser)
+        public bool DeleteService(SalonService ser)
         {
             try
             {
                 if (ser.Id > 0)
                 {
-                    db.Admin_Delete_SalonServices(ser.Id);
+                    db.Admin_Delete_SalonServices(ser.Id);                   
                 }
+                return true;
             }
             catch(Exception ex)
             {

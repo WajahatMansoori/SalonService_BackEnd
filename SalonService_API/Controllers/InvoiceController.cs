@@ -21,7 +21,7 @@ namespace SalonService_API.Controllers
 
         [HttpPost]
         [Route("api/InsertInvoice")]
-        public void AddInvoice(Invoice iv)
+        public bool AddInvoice(Invoice iv)
         {
             try
             {
@@ -29,6 +29,7 @@ namespace SalonService_API.Controllers
                 {
                     db.Admin_Insert_Invoices(iv.SalonProductsId, iv.InvoiceAmount, iv.InvoiceDate, iv.ProductQuantity);
                 }
+                return true;
             }
             catch(Exception ex)
             {
