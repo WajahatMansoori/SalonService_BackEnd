@@ -13,6 +13,7 @@ namespace SalonService_API.Models
     
     public partial class Admin_Select_SolonAppointment_Result
     {
+        public int FacilitatorId { get; set; }
         public string ClientName { get; set; }
         public string ClientPhone { get; set; }
         public Nullable<System.DateTime> AppointDate { get; set; }

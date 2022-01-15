@@ -116,7 +116,7 @@ namespace SalonService_API.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Admin_Insert_SlonProduct", productNameParameter);
         }
     
-        public virtual ObjectResult<string> Admin_Insert_SolonAppointment(string clientName, string clientPhone, string serviceId, Nullable<int> facilitatorId, Nullable<System.DateTime> appointmentDate)
+        public virtual ObjectResult<string> Admin_Insert_SolonAppointment(string clientName, string clientPhone, string serviceId, Nullable<int> facilitatorId, Nullable<System.DateTime> appointmentDate, Nullable<System.DateTime> SlotTime)
         {
             var clientNameParameter = clientName != null ?
                 new ObjectParameter("ClientName", clientName) :
@@ -137,8 +137,11 @@ namespace SalonService_API.Models
             var appointmentDateParameter = appointmentDate.HasValue ?
                 new ObjectParameter("AppointmentDate", appointmentDate) :
                 new ObjectParameter("AppointmentDate", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("Admin_Insert_SolonAppointment", clientNameParameter, clientPhoneParameter, serviceIdParameter, facilitatorIdParameter, appointmentDateParameter);
+
+            var SlottimeDateParameter = SlotTime.HasValue ?
+                        new ObjectParameter("SlotTime", SlotTime) :
+                        new ObjectParameter("SlotTime", typeof(System.DateTime));
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("Admin_Insert_SolonAppointment", clientNameParameter, clientPhoneParameter, serviceIdParameter, facilitatorIdParameter, appointmentDateParameter,SlottimeDateParameter);
         }
     
         public virtual ObjectResult<Admin_Select_Invoices_Result> Admin_Select_Invoices()

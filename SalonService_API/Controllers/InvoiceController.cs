@@ -36,5 +36,7 @@ namespace SalonService_API.Controllers
                 throw ex;
             }
         }
+
+
     }
 }

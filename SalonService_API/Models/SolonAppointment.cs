@@ -21,6 +21,7 @@ namespace SalonService_API.Models
         public Nullable<int> SalonFacilitatorId { get; set; }
         public Nullable<int> BillAmount { get; set; }
         public Nullable<System.DateTime> AppointDate { get; set; }
+        public Nullable<System.DateTime> SlotTime { get; set; }
         public Nullable<System.DateTime> CreationDate { get; set; }
         public Nullable<System.DateTime> UpdationDate { get; set; }
         public Nullable<bool> IsActive { get; set; }
